@@ -97,7 +97,7 @@ def main():
     print("Adding files:")
     diffs = repo.index.diff(None)
     if not diffs:
-        exit("No changes to add...")
+        exit("No changes to add... git gud man.")
     for diff_added in repo.index.diff(None):
         print(diff_added.a_path)
         repo.index.add([diff_added.a_path])
