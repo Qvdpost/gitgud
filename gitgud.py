@@ -96,10 +96,11 @@ def main():
     origin.fetch()
     origin.pull()
 
-    print("Adding files:")
     diffs = repo.index.diff(None)
     if not diffs:
         exit("No changes to add... git gud man.")
+        
+    print("Adding files:")
     for diff_added in repo.index.diff(None):
         print(f'\t{diff_added.a_path}')
         repo.index.add([diff_added.a_path])
@@ -114,7 +115,7 @@ def main():
 
     print("Pushing")
     origin.push()
-    
+
     print("Gotten Gud")
 
 if __name__ == '__main__':
