@@ -101,6 +101,7 @@ def main():
         print(f'\t{diff_added.a_path}')
         repo.index.add([diff_added.a_path])
     for file in repo.untracked_files:
+        print(f'\t{diff_added.a_path}')
         repo.index.add([file])
     print("Committing")
     quotes = construct_quotes()
