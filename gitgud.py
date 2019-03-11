@@ -81,7 +81,6 @@ def construct_quotes():
 
 def main():
     print("Gitting Gud")
-    print("Asserting repo.")
     repo = git.Repo(os.getcwd())
     assert not repo.bare
     if repo.remotes.origin:
@@ -99,7 +98,7 @@ def main():
     if not diffs:
         exit("No changes to add... git gud man.")
     for diff_added in repo.index.diff(None):
-        print(diff_added.a_path)
+        print(f'\t{diff_added.a_path}')
         repo.index.add([diff_added.a_path])
     for file in repo.untracked_files:
         repo.index.add([file])
