@@ -82,11 +82,18 @@ def construct_quotes():
 def main():
     repo = git.Repo(os.getcwd())
     assert not repo.bare
-    assert not repo.is_dirty()
+    if repo.remotes.origin:
+        origin = repo.remotes.origin
+    else:
+        origin = repo.create_remote('origin', repo.remotes.origin.url)
+        assert origin.exists()
+        assert origin == repo.remotes.origin == repo.remotes['origin']
+    origin.fetch()
+    for (path, stage), entry in repo.index.entries.items():  # @UnusedVariable
+        repo.index.add([path])
     print(f'Adding: {repo.untracked_files}')
     for file in repo.untracked_files:
         repo.index.add([file])
-    exit(1)
     quotes = construct_quotes()
     commit_message = f'{quotes[0][0]} - {quotes[0][1]}'
     repo.index.commit(commit_message)
