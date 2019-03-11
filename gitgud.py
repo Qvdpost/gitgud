@@ -83,6 +83,7 @@ def main():
     print("Gitting Gud")
     repo = git.Repo(os.getcwd())
     assert not repo.bare
+
     if repo.remotes.origin:
         origin = repo.remotes.origin
     else:
@@ -90,9 +91,11 @@ def main():
         origin = repo.create_remote('origin', repo.remotes.origin.url)
         assert origin.exists()
         assert origin == repo.remotes.origin == repo.remotes['origin']
+
     print("Fetching and pulling.")
     origin.fetch()
     origin.pull()
+
     print("Adding files:")
     diffs = repo.index.diff(None)
     if not diffs:
@@ -103,13 +106,16 @@ def main():
     for file in repo.untracked_files:
         print(f'\t{diff_added.a_path}')
         repo.index.add([file])
+
     print("Committing")
     quotes = construct_quotes()
     commit_message = f'{quotes[0][0]} - {quotes[0][1]}'
     repo.index.commit(commit_message)
+
     print("Pushing")
     origin.push()
-    print("Got Gud")
+    
+    print("Gotten Gud")
 
 if __name__ == '__main__':
     main()
