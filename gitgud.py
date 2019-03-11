@@ -80,18 +80,26 @@ def construct_quotes():
     return tups
 
 def main():
+    print("Asserting repo.")
     repo = git.Repo(os.getcwd())
     assert not repo.bare
     if repo.remotes.origin:
         origin = repo.remotes.origin
     else:
+        print("Setting up remote.")
         origin = repo.create_remote('origin', repo.remotes.origin.url)
         assert origin.exists()
         assert origin == repo.remotes.origin == repo.remotes['origin']
+    print("Fetching and pulling.")
     origin.fetch()
-    for (path, stage), entry in repo.index.entries.items():  # @UnusedVariable
-        repo.index.add([path])
-    print(f'Adding: {repo.untracked_files}')
+    origin.pull()
+    print("Adding files:")
+    diffs = repo.index.diff(None)
+    if not diffs:
+        exit("No changes to add...")
+    for diff_added in repo.index.diff(None):
+        print(diff_added.a_path)
+        repo.index.add([diff_added.a_path])
     for file in repo.untracked_files:
         repo.index.add([file])
     quotes = construct_quotes()
