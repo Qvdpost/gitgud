@@ -80,6 +80,7 @@ def construct_quotes():
     return tups
 
 def main():
+    print("Gitting Gud")
     print("Asserting repo.")
     repo = git.Repo(os.getcwd())
     assert not repo.bare
@@ -102,10 +103,13 @@ def main():
         repo.index.add([diff_added.a_path])
     for file in repo.untracked_files:
         repo.index.add([file])
+    print("Committing")
     quotes = construct_quotes()
     commit_message = f'{quotes[0][0]} - {quotes[0][1]}'
     repo.index.commit(commit_message)
+    print("Pushing")
     origin.push()
+    print("Got Gud")
 
 if __name__ == '__main__':
     main()
