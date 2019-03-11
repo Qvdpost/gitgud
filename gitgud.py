@@ -97,6 +97,7 @@ def main():
     quotes = construct_quotes()
     commit_message = f'{quotes[0][0]} - {quotes[0][1]}'
     repo.index.commit(commit_message)
+    origin.push()
 
 if __name__ == '__main__':
     main()
