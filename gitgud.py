@@ -103,15 +103,16 @@ def main():
     if len(diffs) > 0:
         print("Changed files:")
         for diff_added in diffs:
-            print(f'\t{diff_added.a_path}')
             if diff_added.b_mode:
+                print(f'\t{diff_added.a_path}')
                 repo.index.add([diff_added.a_path])
+                diffs.remove(diff_added)
 
     if len(diffs) > 0:
         print("Deleted files:")
         for diff_removed in diffs:
-            print(f'\t{diff_removed.a_path}')
             if not diff_added.b_mode:
+                print(f'\t{diff_removed.a_path}')
                 repo.index.remove([diff_added.a_path])
 
     if len(repo.untracked_files) > 0:
