@@ -100,14 +100,17 @@ def main():
     if not diffs and len(repo.untracked_files) == 0:
         exit("No changes to add... git gud man.")
 
+    breakpoint()
     print("Changed files:")
     for diff_added in diffs:
         print(f'\t{diff_added.a_path}')
         repo.index.add([diff_added.a_path])
-    print("New files:")
-    for file in repo.untracked_files:
-        print(f'\t{file}')
-        repo.index.add([file])
+
+    if len(repo.untracked_files) > 0:
+        print("New files:")
+        for file in repo.untracked_files:
+            print(f'\t{file}')
+            repo.index.add([file])
 
     print("Committing")
     quotes = construct_quotes()
