@@ -97,14 +97,15 @@ def main():
     origin.pull()
 
     diffs = repo.index.diff(None)
+    print(len(diffs))
     if not diffs and len(repo.untracked_files) == 0:
         exit("No changes to add... git gud man.")
 
-    breakpoint()
-    print("Changed files:")
-    for diff_added in diffs:
-        print(f'\t{diff_added.a_path}')
-        repo.index.add([diff_added.a_path])
+    if len(diffs) > 0:
+        print("Changed files:")
+        for diff_added in diffs:
+            print(f'\t{diff_added.a_path}')
+            repo.index.add([diff_added.a_path])
 
     if len(repo.untracked_files) > 0:
         print("New files:")
