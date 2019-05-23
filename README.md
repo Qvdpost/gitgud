@@ -8,6 +8,6 @@ How to use (on linux):
 -  git clone this repository somewhere. ('/opt' for example)
 -  chmod `gitgud.py` with executable rights (`chmod +x gitgud.py`)
 -  install the required dependencies (`pip install -r requirements.txt`)
--  symlink `gitgud.py` so you can call it whereever. (`ln -s /path/to/gitgud.py /usr/local/bin/gitgud`)
+-  symlink `gitgud.py` so you can run it from any folder. (`ln -s /path/to/gitgud.py /usr/local/bin/gitgud`)
 
-Now gitgud.
+Now go out there and gitgud.
