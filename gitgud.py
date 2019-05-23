@@ -97,6 +97,7 @@ def main():
     origin.pull()
 
     diffs = repo.index.diff(None)
+    deletions = []
     if not diffs and len(repo.untracked_files) == 0:
         exit("No changes to add... git gud man.")
 
@@ -106,11 +107,12 @@ def main():
             if diff_added.b_mode:
                 print(f'\t{diff_added.a_path}')
                 repo.index.add([diff_added.a_path])
-                diffs.remove(diff_added)
+            else:
+                deletions.append(diff_added)
 
-    if len(diffs) > 0:
+    if len(deletions) > 0:
         print("Deleted files:")
-        for diff_removed in diffs:
+        for diff_removed in deletions:
             if not diff_added.b_mode:
                 print(f'\t{diff_removed.a_path}')
                 repo.index.remove([diff_added.a_path])

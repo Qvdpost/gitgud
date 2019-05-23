@@ -10,4 +10,7 @@ How to use (on linux):
 -  install the required dependencies (`pip install -r requirements.txt`)
 -  symlink `gitgud.py` so you can run it from any folder. (`ln -s /path/to/gitgud.py /usr/local/bin/gitgud`)
 
+Disclaimer:
+- Merge conflicts will remain unresolved.
+
 Now go out there and gitgud.
