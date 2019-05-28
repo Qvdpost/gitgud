@@ -1,6 +1,6 @@
 # gitgud
 
-Ever just wanted to git gud at git? Well look no further noobs. This ultimate hacking utility will make your gitting life much easier.
+Ever just wanted to get gud at git? Well look no further noobs. This ultimate hacking utility will make your gitting life much easier.
 Never again will you have to come up with an elaborate commit message again. No long will you have to first add then commit then push your changes.
 Just `gitgud` and all your troubles will go away.
 
